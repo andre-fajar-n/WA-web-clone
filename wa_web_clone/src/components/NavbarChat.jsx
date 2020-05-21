@@ -6,12 +6,12 @@ import Col from 'react-bootstrap/Col'
 
 const NavbarChat = (props) => {
   return (
-    <Navbar style={{ backgroundColor: "#ededed", position: "fixed" }} className="p-0">
+    <Navbar id="navbar-chat" style={{ width: `${8 / 12 * 100}%`, left: `${4 / 12 * 100}%` }} className="p-0">
       <Nav.Link className="mr-auto">
         <Row>
           <Col md={2}><i class="fas fa-user-circle"></i></Col>
           <Col md={"auto"}>
-            <div>Nama</div>
+            <div>{props.item}</div>
             <div>Last seen</div>
           </Col>
         </Row>

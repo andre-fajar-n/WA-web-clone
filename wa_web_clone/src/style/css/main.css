@@ -1,0 +1,65 @@
+#box-list-chat {
+    max-height: 80vh;
+    overflow-y: auto;
+    scrollbar-color: rgba(0,0,0,.2) hsla(0,0%,100%,.1);
+    scrollbar-width: thin;
+}
+
+#box-chat{
+    max-height: 85vh;
+    overflow-y: auto;
+    background-color: #00bfa5;
+    margin-top: 64px;
+    margin-left: 5px;
+    scrollbar-color: rgba(0,0,0,.2) hsla(0,0%,100%,.1);
+    scrollbar-width: thin;
+}
+
+#friend-chat{
+    background-color: #ffffff;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+#user-chat{
+    background-color: #6cea91;
+    border-radius: 10px;
+    max-width: 80%;
+    position: relative;
+    left: 20%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#date-chat{
+    background-color: rgba(255, 245, 254, 0.92);
+    max-width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;   
+}
+
+#navbar-chat{
+    background-color: #ededed;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+}
+
+.modal{padding: 0 !important;}
+
+.modal-dialog{
+    margin: 0;
+    width: 33.333%;
+    height: 400px;
+}
+
+.connected-wa{
+    text-align: center;
+    background-color: #f8f9fa;
+    height: 590px;
+}
