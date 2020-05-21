@@ -11,6 +11,7 @@
     background-color: #00bfa5;
     margin-top: 64px;
     margin-left: 5px;
+    padding: 0 10px;
     scrollbar-color: rgba(0,0,0,.2) hsla(0,0%,100%,.1);
     scrollbar-width: thin;
 }
@@ -52,14 +53,70 @@
 
 .modal{padding: 0 !important;}
 
-.modal-dialog{
-    margin: 0;
-    width: 33.333%;
-    height: 400px;
-}
-
 .connected-wa{
     text-align: center;
     background-color: #f8f9fa;
     height: 590px;
 }
+
+/* Start Modal Profile */
+.header-profile{
+    background-color: #00bfa5;
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 33%;
+    height: 50px;
+}
+
+.modal-profile{
+    margin: 0;
+    width: 33.333%;
+    height: 400px;
+}
+
+.body-profile{
+    margin-top: 50px;
+}
+/* End Modal Profile */
+
+/* Start Modal Status */
+.modal-status{
+    /* background-color: #000000; */
+    margin: 0;
+    max-width: 100% !important;
+    height: 100%;
+}
+
+.close-status{
+    color: #ffffff;
+    background-color: #000000;
+    text-align: end;
+}
+
+.navbar-status{
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 33%;
+}
+
+.header-status{
+    background-color: #141414;
+    color: #ffffff;
+}
+
+.list-status{
+    margin-top: 48px;
+    overflow-y: auto;
+    scrollbar-color: rgba(0,0,0,.2) hsla(0,0%,100%,.1);
+    scrollbar-width: thin;
+    max-height: 91vh;
+}
+
+.avatar{
+    width: 100%;
+    height: auto;
+}
+/* End Modal Status */
