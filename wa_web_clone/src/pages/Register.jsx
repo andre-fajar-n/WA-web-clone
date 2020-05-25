@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
-class Login extends Component {
+class Register extends Component {
   render() {
     return (
       <Fragment>
@@ -16,8 +16,16 @@ class Login extends Component {
             </div>
           </div>
           <div className="window-wa-web container">
-            <h1 style={{ textAlign: "center" }}>LOGIN</h1><br />
+            <h1 style={{ textAlign: "center" }}>REGISTER</h1><br />
             <Form>
+              <Form.Group as={Row} controlId="formPlaintextUsername">
+                <Col sm="1"></Col>
+                <Form.Label column sm="2">Username</Form.Label>
+                <Col sm="8">
+                  <Form.Control type="text" placeholder="Username" />
+                </Col>
+                <Col sm="1"></Col>
+              </Form.Group>
               <Form.Group as={Row} controlId="formPlaintextPhoneNumber">
                 <Col sm="1"></Col>
                 <Form.Label column sm="2">Phone Number</Form.Label>
@@ -36,7 +44,7 @@ class Login extends Component {
               </Form.Group>
             </Form>
             <div style={{ textAlign: "center" }}>
-              <span>Don't have an account? <Link to="/register">Click here!</Link></span>
+              <span>Have an account? <Link to="/login">Click here!</Link></span>
             </div>
           </div>
         </div>
@@ -45,4 +53,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;

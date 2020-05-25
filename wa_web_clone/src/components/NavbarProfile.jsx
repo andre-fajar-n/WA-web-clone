@@ -12,17 +12,19 @@ const NavbarProfile = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [showStatus, setListStatus] = useState(false)
+  const [showListStatus, setListStatus] = useState(false)
   const handleCloseListStatus = () => setListStatus(false);
   const handleShowListStatus = () => setListStatus(true);
   return (
     <div style={{ position: "fixed", width: `${(4 / 12 * 100)}%`, left: "0", right: `${4 / 12 * 100}%`, zIndex: "999" }}>
       <Navbar style={{ backgroundColor: "#ededed", }} className="p-0">
+
+        {/* tombol profile */}
         <Nav.Link className="mr-auto" onClick={handleShow}>
           <i md={2} class="fas fa-user-circle"></i>
         </Nav.Link>
 
-        {/* start modal */}
+        {/* start modal profile */}
         <Modal dialogClassName="modal-profile" show={showProfile} onHide={handleClose}>
           <Modal.Header className="header-profile">
             <Link style={{ color: "#ffffff" }} onClick={handleClose}>
@@ -37,19 +39,26 @@ const NavbarProfile = (props) => {
             <div>about</div>
           </Modal.Body>
         </Modal>
-        {/* end modal */}
+        {/* end modal profile */}
 
+        {/* start navbar status, new chat, setting */}
         <Nav className="ml-auto" style={{ color: "black" }}>
           <Nav.Link onClick={handleShowListStatus}><i class="fas fa-circle-notch"></i></Nav.Link>
 
-          <Modal dialogClassName="modal-status" show={showStatus} onHide={handleCloseListStatus}>
+          {/* start modal list status */}
+          <Modal dialogClassName="modal-status" show={showListStatus} onHide={handleCloseListStatus}>
             <ListStatus handleCloseListStatus={handleCloseListStatus} />
           </Modal>
+          {/* end modal list status */}
 
           <Nav.Link><i class="fas fa-comment-dots"></i></Nav.Link>
           <Nav.Link><i class="fas fa-ellipsis-v"></i></Nav.Link>
         </Nav>
+        {/* end navbar status, new chat, setting */}
+
       </Navbar>
+
+      {/* input search chat/friend */}
       <Form.Group className="p-2 m-0" style={{ backgroundColor: "#f7f7f7" }}>
         <Form.Control type="text" placeholder="Search or start new chat" style={{ borderRadius: "50px" }} autoFocus></Form.Control>
       </Form.Group>

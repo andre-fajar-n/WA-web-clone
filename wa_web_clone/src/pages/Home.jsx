@@ -15,7 +15,10 @@ class Home extends Component {
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
             <Col sm={4} className="p-0">
+              {/* header menu profile */}
               <NavbarProfile />
+
+              {/* (start) Menampilkan list chat */}
               <Nav variant="pills" className="flex-column">
                 <div id="box-list-chat" style={{ marginTop: "110px" }}>
                   {['andrefn', 'andren', 'romli', 'aisyah', 'oci', 'shofi', 'bagas', 'sholeh', 'derby', 'aji', 'yopi', 'rizal', 'agus', 'alul'].map((value) => (
@@ -24,14 +27,14 @@ class Home extends Component {
                     </Nav.Item>
                   ))}
                 </div>
-                {/* <Nav.Link eventKey="first">Tab 1</Nav.Link>
-                <Nav.Item>
-                  <Nav.Link eventKey="second">Tab 2</Nav.Link>
-                </Nav.Item> */}
               </Nav>
+              {/* (end) Menampilkan list chat */}
+
             </Col>
             <Col sm={8} className="p-0">
+
               <Tab.Content>
+                {/* (start) tampilan di box kanan sebelum klik chat */}
                 <Tab.Pane eventKey="first">
                   <div className="connected-wa">
                     <img src={require("../images/whatsapp-icon-logo.png")} alt="" />
@@ -39,6 +42,9 @@ class Home extends Component {
                     <span>Whatsapp connect to your phone to sync messages. To reduce data usage, connect your phone to Wi-Fi</span>
                   </div>
                 </Tab.Pane>
+                {/* (end) tampilan di box kanan sebelum klik chat */}
+
+                {/* (start) menampilkan isi chat */}
                 {['andrefn', 'andren', 'romli', 'aisyah', 'oci', 'shofi', 'bagas', 'sholeh', 'derby', 'aji', 'yopi', 'rizal', 'agus', 'alul'].map((item) => (
                   <Tab.Pane eventKey={`${item}-name`}>
                     <NavbarChat item={item} />
@@ -49,34 +55,12 @@ class Home extends Component {
                     </div>
                   </Tab.Pane>
                 ))}
-                {/* <Chat />
-                <Tab.Pane eventKey="2-name">
-                  <ListChat />
-                </Tab.Pane> */}
+                {/* (end) menampilkan isi chat */}
+
               </Tab.Content>
             </Col>
           </Row>
         </Tab.Container>
-        {/* <Container fluid className="p-0">
-          <Row>
-            <Col sm={4} className="p-0">
-              <NavbarProfile />
-              <div id="box-list-chat" style={{ marginTop: "110px" }}>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
-                  <ListChat value={value} />
-                ))}
-              </div>
-            </Col>
-            <Col sm={8} className="p-0">
-              <NavbarChat />
-              <div id="box-chat">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((value) => (
-                  <Chat value={value} />
-                ))}
-              </div>
-            </Col>
-          </Row>
-        </Container> */}
       </Fragment>
     )
   }
