@@ -9,14 +9,28 @@ import Nav from "react-bootstrap/Nav"
 import Tab from 'react-bootstrap/Tab'
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
-import { getConversation } from "../store/action/chat"
+import { getConversation, sendMessage, changeInputMessage } from "../store/action/chat"
+import Form from "react-bootstrap/Form"
 
 class Home extends Component {
   componentDidMount = async () => {
     await this.props.getConversation()
   }
+
+  postAfterSendMessage = async (id) => {
+    await this.props.sendMessage(id)
+    await this.props.history.replace('/')
+    await this.props.getConversation()
+    this.inputReset()
+  }
+
+  inputReset = () => {
+    const inputMessage = document.getElementById("sendMessage")
+    inputMessage.value = ""
+  }
+
   render() {
-    console.warn("cek di home", this.props.listConversation)
+    console.warn("cek di home", this.props.listPersonalMessage)
     const listConversation = this.props.listConversation
     return (
       <Fragment>
@@ -30,8 +44,8 @@ class Home extends Component {
                 {/* (start) Menampilkan list chat */}
                 <Nav variant="pills" className="flex-column">
                   <div id="box-list-chat" style={{ marginTop: "110px" }}>
-                    {listConversation.map((value) => (
-                      <Nav.Item>
+                    {listConversation.map((value, id) => (
+                      <Nav.Item key={id} >
                         <ListChat value={value} biodata={this.props.dataUser.biodata} />
                       </Nav.Item>
                     ))}
@@ -58,10 +72,34 @@ class Home extends Component {
                     <Tab.Pane eventKey={`${item.data_user.username}`}>
                       <NavbarChat item={item} />
                       <div id="box-chat">
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((value) => (
+                        {item.all_chat.map((value) => (
                           <Chat value={value} />
                         ))}
                       </div>
+                      <Form.Group onSubmit={(e) => e.preventDefault()} style={{ backgroundColor: "#f7f7f7", padding: "10px 0", margin: "0" }}>
+                        <Row>
+                          <Col sm={1} className="p-0 m-auto" style={{ textAlign: "center" }}>
+                            <i className="far fa-grin" style={{ fontSize: "30px" }}></i>
+                          </Col>
+                          <Col sm={9} className="p-0">
+                            <Form.Control
+                              onChange={(e) => this.props.changeInputMessage(e)}
+                              name="message"
+                              type="text"
+                              id="sendMessage"
+                              placeholder="Type a message"
+                              style={{ borderRadius: "50px" }}>
+
+                            </Form.Control>
+                          </Col>
+                          <Col sm={1} className="p-0 m-auto" style={{ textAlign: "center" }}>
+                            <i onClick={() => this.postAfterSendMessage(item.data_user.id)} className="far fa-paper-plane" style={{ fontSize: "30px" }}></i>
+                          </Col>
+                          <Col sm={1} className="p-0 m-auto" style={{ textAlign: "center" }}>
+                            <i className="fas fa-microphone" style={{ fontSize: "30px" }}></i>
+                          </Col>
+                        </Row>
+                      </Form.Group>
                     </Tab.Pane>
                   ))}
                   {/* (end) menampilkan isi chat */}
@@ -80,11 +118,13 @@ class Home extends Component {
 
 const mapStateToProps = (state) => ({
   dataUser: state.user,
-  listConversation: state.chat.listConversation
+  listConversation: state.chat.listConversation,
 })
 
 const mapDispatchToProps = {
   getConversation,
+  sendMessage,
+  changeInputMessage
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

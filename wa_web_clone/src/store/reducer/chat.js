@@ -9,6 +9,11 @@ export default function chatReducer(chatState = initialChat, action) {
         ...chatState,
         listConversation: action.payload
       }
+    case "CHANGE_INPUT_MESSAGE":
+      return {
+        ...chatState,
+        [action.payload.target.name]: action.payload.target.value
+      }
     default:
       return chatState
   }

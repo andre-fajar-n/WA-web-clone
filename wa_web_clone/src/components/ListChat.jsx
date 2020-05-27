@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col"
 const moment = require('moment')
 
 const ListChat = (props) => {
-  console.warn("cek list chat", props)
   const username = props.value.data_user.username
   const lastChat = props.value.last_chat.message
   const dateChat = props.value.last_chat.created_at
@@ -18,13 +17,13 @@ const ListChat = (props) => {
           <Col md={10} className="p-0">
             <Row className="m-0">
               <Col className="p-0">{username}</Col>
-              <Col className="p-0">{moment().fromNow(dateChat)}</Col>
+              <Col className="p-0">{moment(dateChat).fromNow('d')}</Col>
             </Row>
             <Row className="m-0">
               {props.biodata.id === props.value.last_chat.user_id ? (
-                <Fragment></Fragment>
+                <i className="fas fa-check"></i>
               ) : (
-                  <i class="fas fa-check"></i>
+                  <Fragment></Fragment>
                 )}
               {lastChat}
             </Row>
