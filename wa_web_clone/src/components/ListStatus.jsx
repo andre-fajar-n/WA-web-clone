@@ -16,7 +16,7 @@ const ListStatus = (props) => {
         <Row className="m-0 navbar-status">
 
           <Col md={2} className="p-0">
-            <i class="fas fa-user-circle"></i>
+            <i className="fas fa-user-circle"></i>
           </Col>
 
           <Col md={"auto"} className="p-0">
@@ -61,13 +61,13 @@ const ListStatus = (props) => {
         {/* start tombol close modal status */}
         <Navbar className="close-status">
           <Nav.Link className="ml-auto" style={{ color: "#ffffff" }} onClick={props.handleCloseListStatus}>
-            <i class="fas fa-times"></i>
+            <i className="fas fa-times"></i>
           </Nav.Link>
         </Navbar>
         {/* end tombol close modal status */}
 
         <div className="blank-status">
-          <i style={{ fontSize: "50vh" }} class="fas fa-circle-notch"></i><br />
+          <i style={{ fontSize: "50vh" }} className="fas fa-circle-notch"></i><br />
           <span>Click on contact to view their status updates</span>
         </div>
       </Col>

@@ -24,6 +24,22 @@ export const doLogin = () => {
         type: "DO_LOGIN",
         payload: response.data
       })
+
+      // start get biodata user
+      await axios.get(url + "user", {
+        headers: { 'Authorization': 'Bearer ' + getState().user.token }
+      })
+        .then((responseUser) => {
+          dispatch({
+            type: "GET_DATA_USER",
+            payload: responseUser.data
+          })
+        })
+        .catch((error) => {
+          alert("Data tidak ditemukan")
+        })
+      // end get biodata user
+
     } catch (error) {
       alert("Anda belum terdaftar. Silahkan daftar terlebih dahulu!")
     }

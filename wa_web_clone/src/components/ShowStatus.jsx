@@ -10,10 +10,10 @@ const ShowStatus = (props) => {
       <Modal dialogClassName="modal-show-status" show={props.showStatus} onHide={props.handleCloseStatus}>
         <Navbar className="navbar-show-status">
           <Nav.Link style={{ color: "#ffffff" }} onClick={props.handleCloseStatus}>
-            <i class="fas fa-arrow-left"></i>
+            <i className="fas fa-arrow-left"></i>
           </Nav.Link>
           <Nav.Link style={{ color: "#ffffff" }} className="ml-auto" onClick={props.handleCloseStatus, props.handleCloseListStatus}>
-            <i class="fas fa-times"></i>
+            <i className="fas fa-times"></i>
           </Nav.Link>
         </Navbar>
         <Carousel className="each-status">

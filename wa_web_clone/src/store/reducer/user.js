@@ -1,5 +1,6 @@
 const initialStateUser = {
   token: "",
+  biodata: "",
   isLogin: false
 }
 
@@ -15,6 +16,11 @@ export default function userReducer(userState = initialStateUser, action) {
         ...userState,
         token: action.payload.token,
         isLogin: true
+      }
+    case "GET_DATA_USER":
+      return {
+        ...userState,
+        biodata: action.payload
       }
     default:
       return userState

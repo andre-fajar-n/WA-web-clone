@@ -9,9 +9,15 @@ import Nav from "react-bootstrap/Nav"
 import Tab from 'react-bootstrap/Tab'
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
+import { getConversation } from "../store/action/chat"
 
 class Home extends Component {
+  componentDidMount = async () => {
+    await this.props.getConversation()
+  }
   render() {
+    console.warn("cek di home", this.props.listConversation)
+    const listConversation = this.props.listConversation
     return (
       <Fragment>
         {this.props.dataUser.isLogin ? (
@@ -24,9 +30,9 @@ class Home extends Component {
                 {/* (start) Menampilkan list chat */}
                 <Nav variant="pills" className="flex-column">
                   <div id="box-list-chat" style={{ marginTop: "110px" }}>
-                    {['andrefn', 'andren', 'romli', 'aisyah', 'oci', 'shofi', 'bagas', 'sholeh', 'derby', 'aji', 'yopi', 'rizal', 'agus', 'alul'].map((value) => (
+                    {listConversation.map((value) => (
                       <Nav.Item>
-                        <ListChat value={value} />
+                        <ListChat value={value} biodata={this.props.dataUser.biodata} />
                       </Nav.Item>
                     ))}
                   </div>
@@ -48,8 +54,8 @@ class Home extends Component {
                   {/* (end) tampilan di box kanan sebelum klik chat */}
 
                   {/* (start) menampilkan isi chat */}
-                  {['andrefn', 'andren', 'romli', 'aisyah', 'oci', 'shofi', 'bagas', 'sholeh', 'derby', 'aji', 'yopi', 'rizal', 'agus', 'alul'].map((item) => (
-                    <Tab.Pane eventKey={`${item}-name`}>
+                  {listConversation.map((item) => (
+                    <Tab.Pane eventKey={`${item.data_user.username}`}>
                       <NavbarChat item={item} />
                       <div id="box-chat">
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((value) => (
@@ -73,7 +79,12 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  dataUser: state.user
+  dataUser: state.user,
+  listConversation: state.chat.listConversation
 })
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = {
+  getConversation,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

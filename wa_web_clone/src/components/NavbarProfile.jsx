@@ -21,14 +21,14 @@ const NavbarProfile = (props) => {
 
         {/* tombol profile */}
         <Nav.Link className="mr-auto" onClick={handleShow}>
-          <i md={2} class="fas fa-user-circle"></i>
+          <i md={2} className="fas fa-user-circle"></i>
         </Nav.Link>
 
         {/* start modal profile */}
         <Modal dialogClassName="modal-profile" show={showProfile} onHide={handleClose}>
           <Modal.Header className="header-profile">
             <Link style={{ color: "#ffffff" }} onClick={handleClose}>
-              <i class="fas fa-arrow-left"></i>
+              <i className="fas fa-arrow-left"></i>
             </Link>
             <div>Profile</div>
           </Modal.Header>
@@ -43,7 +43,7 @@ const NavbarProfile = (props) => {
 
         {/* start navbar status, new chat, setting */}
         <Nav className="ml-auto" style={{ color: "black" }}>
-          <Nav.Link onClick={handleShowListStatus}><i class="fas fa-circle-notch"></i></Nav.Link>
+          <Nav.Link onClick={handleShowListStatus}><i className="fas fa-circle-notch"></i></Nav.Link>
 
           {/* start modal list status */}
           <Modal dialogClassName="modal-status" show={showListStatus} onHide={handleCloseListStatus}>
@@ -51,8 +51,8 @@ const NavbarProfile = (props) => {
           </Modal>
           {/* end modal list status */}
 
-          <Nav.Link><i class="fas fa-comment-dots"></i></Nav.Link>
-          <Nav.Link><i class="fas fa-ellipsis-v"></i></Nav.Link>
+          <Nav.Link><i className="fas fa-comment-dots"></i></Nav.Link>
+          <Nav.Link><i className="fas fa-ellipsis-v"></i></Nav.Link>
         </Nav>
         {/* end navbar status, new chat, setting */}
 
