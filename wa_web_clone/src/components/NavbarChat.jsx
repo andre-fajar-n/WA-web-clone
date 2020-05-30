@@ -5,13 +5,19 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 const NavbarChat = (props) => {
+  let username = ""
+  if (typeof (props.item.info_chat.username) == "string") {
+    username = props.item.info_chat.username
+  } else {
+    username = props.item.info_chat.name
+  }
   return (
     <Navbar id="navbar-chat" style={{ width: `${8 / 12 * 100}%`, left: `${4 / 12 * 100}%` }} className="p-0">
       <Nav.Link className="mr-auto">
         <Row>
           <Col md={2}><i className="fas fa-user-circle"></i></Col>
           <Col md={"auto"}>
-            <div>{props.item.data_user.username}</div>
+            <div>{username}</div>
             <div>Last seen</div>
           </Col>
         </Row>

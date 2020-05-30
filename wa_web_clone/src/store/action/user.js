@@ -48,20 +48,53 @@ export const doLogin = () => {
 
 export const register = () => {
   return async (dispatch, getState) => {
+    const dataUsername = getState().user.registerUsername
     const dataPhoneNumber = getState().user.registerPhoneNumber
     const dataPassword = getState().user.registerPassword
     const bodyRequest = {
+      username: dataUsername,
       phone_number: dataPhoneNumber,
       password: dataPassword
     }
     try {
       const response = await axios.post(url + "user", bodyRequest)
-      dispatch({
-        type: "REGISTER",
-        payload: response.data
-      })
+
+      // start login
+      try {
+        const response = await axios.get(url + "login",
+          {
+            params: {
+              phone_number: dataPhoneNumber,
+              password: dataPassword
+            }
+          })
+        dispatch({
+          type: "DO_LOGIN",
+          payload: response.data
+        })
+
+        // start get biodata user
+        await axios.get(url + "user", {
+          headers: { 'Authorization': 'Bearer ' + getState().user.token }
+        })
+          .then((responseUser) => {
+            dispatch({
+              type: "GET_DATA_USER",
+              payload: responseUser.data
+            })
+          })
+          .catch((error) => {
+            alert("Data tidak ditemukan")
+          })
+        // end get biodata user
+
+      } catch (error) {
+        alert("Anda belum terdaftar. Silahkan daftar terlebih dahulu!")
+      }
+      // end login
+
     } catch (error) {
-      alert("Phone number have been registered")
+      alert("Nomor sudah terdaftar")
     }
   }
 }
