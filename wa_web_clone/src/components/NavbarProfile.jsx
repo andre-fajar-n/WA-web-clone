@@ -47,7 +47,10 @@ const NavbarProfile = (props) => {
 
           {/* start modal list status */}
           <Modal dialogClassName="modal-status" show={showListStatus} onHide={handleCloseListStatus}>
-            <ListStatus handleCloseListStatus={handleCloseListStatus} />
+            <ListStatus
+              listStatus={props.listStatus}
+              dataUser={props.dataUser}
+              handleCloseListStatus={handleCloseListStatus} />
           </Modal>
           {/* end modal list status */}
 

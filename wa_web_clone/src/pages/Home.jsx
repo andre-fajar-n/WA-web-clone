@@ -1,20 +1,20 @@
 import React, { Component, Fragment } from "react"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import NavbarChat from "../components/NavbarChat"
 import NavbarProfile from "../components/NavbarProfile"
 import ListChat from "../components/ListChat"
-import Chat from "../components/Chat"
 import Nav from "react-bootstrap/Nav"
 import Tab from 'react-bootstrap/Tab'
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { sendMessage, changeInputMessage, deleteMessage, getAllMessage } from "../store/action/chat"
-import Form from "react-bootstrap/Form"
+import { getStatus } from "../store/action/status"
+import ShowTabChat from "../components/ShowTabChat"
 
 class Home extends Component {
   componentDidMount = async () => {
     await this.props.getAllMessage()
+    await this.props.getStatus()
 
     // posisi scroll chat auto dari bawah
     this.scrollBottom()
@@ -34,6 +34,7 @@ class Home extends Component {
     inputMessage.value = ""
   }
 
+  // fungsi auto scroll paling bawah
   scrollBottom = () => {
     const autoBottom = document.getElementById('box-chat')
     if (autoBottom) {
@@ -42,8 +43,6 @@ class Home extends Component {
   }
 
   render() {
-    let username = ""
-    let type_chat = ''
     const listAllMessage = this.props.listAllMessage
     return (
       <Fragment>
@@ -52,7 +51,9 @@ class Home extends Component {
             <Row>
               <Col sm={4} className="p-0">
                 {/* header menu profile */}
-                <NavbarProfile />
+                <NavbarProfile
+                  dataUser={this.props.dataUser}
+                  listStatus={this.props.listStatus} />
 
                 {/* (start) Menampilkan list chat */}
                 <Nav variant="pills" className="flex-column">
@@ -83,50 +84,9 @@ class Home extends Component {
                   {/* start loop tampilan chat */}
                   {listAllMessage.map((item) => (
                     <Fragment>
-                      {/* {console.warn("cek loop", typeof (item.info_chat.username))} */}
-                      {typeof (item.info_chat.username) == "string" ? (
-                        username = item.info_chat.username
-                      ) : (
-                          username = item.info_chat.name
-                        )}
-                      <Tab.Pane eventKey={`${username}`}>
-                        <NavbarChat item={item} />
+                      {/* show tab chat */}
+                      <ShowTabChat item={item} />
 
-                        {/* (start) menampilkan isi chat */}
-                        <div id="box-chat">
-                          {item.all_chat.map((value, index) => (
-                            <Chat
-                              key={index}
-                              {...this.props}
-                              value={value} />
-                          ))}
-                        </div>
-                        {/* (end) menampilkan isi chat */}
-
-                        <Form.Group onSubmit={(e) => e.preventDefault()} style={{ backgroundColor: "#f7f7f7", padding: "10px 0", margin: "0" }}>
-                          <Row>
-                            <Col sm={1} className="p-0 m-auto" style={{ textAlign: "center" }}>
-                              <i className="far fa-grin" style={{ fontSize: "30px" }}></i>
-                            </Col>
-                            <Col sm={9} className="p-0">
-                              <Form.Control
-                                onChange={(e) => this.props.changeInputMessage(e)}
-                                name="message"
-                                type="text"
-                                id="sendMessage"
-                                placeholder="Type a message"
-                                style={{ borderRadius: "50px" }}>
-                              </Form.Control>
-                            </Col>
-                            <Col sm={1} className="p-0 m-auto" style={{ textAlign: "center" }}>
-                              <i onClick={() => this.postAfterSendMessage(item.info_chat.id, item.info_chat.username)} className="far fa-paper-plane" style={{ fontSize: "30px" }}></i>
-                            </Col>
-                            <Col sm={1} className="p-0 m-auto" style={{ textAlign: "center" }}>
-                              <i className="fas fa-microphone" style={{ fontSize: "30px" }}></i>
-                            </Col>
-                          </Row>
-                        </Form.Group>
-                      </Tab.Pane>
                     </Fragment>
                   ))}
                   {/* end loop tampilan chat */}
@@ -145,13 +105,15 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
   dataUser: state.user,
   listAllMessage: state.chat.listAllMessage,
+  listStatus: state.status.listStatus,
 })
 
 const mapDispatchToProps = {
   sendMessage,
   changeInputMessage,
   deleteMessage,
-  getAllMessage
+  getAllMessage,
+  getStatus,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

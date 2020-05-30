@@ -5,6 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Carousel from 'react-bootstrap/Carousel'
 
 const ShowStatus = (props) => {
+  console.warn("cek show status", props)
   return (
     <Fragment>
       <Modal dialogClassName="modal-show-status" show={props.showStatus} onHide={props.handleCloseStatus}>
@@ -17,18 +18,26 @@ const ShowStatus = (props) => {
           </Nav.Link>
         </Navbar>
         <Carousel className="each-status">
-          <Carousel.Item>
-            <img
-              className="d-block"
-              src={require("../logo.svg")}
-              alt="First slide"
-            />
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
+          {props.allStatus.map((item) => (
+            // <Fragment>
+            <Carousel.Item>
+              {/* {item.image === "" || item.image === null ? (
+                  <Fragment></Fragment>
+                ) : (
+                  )} */}
+              <img
+                className="d-block"
+                src={require("../logo.svg")}
+                alt={`${item.image}`}
+              />
+              <Carousel.Caption>
+                <h3>{props.username}</h3>
+                <p>{item.content}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            // </Fragment>
+          ))}
+          {/* <Carousel.Item>
             <img
               className="d-block"
               src={require("../logo.svg")}
@@ -51,7 +60,7 @@ const ShowStatus = (props) => {
               <h3>Third slide label</h3>
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
             </Carousel.Caption>
-          </Carousel.Item>
+          </Carousel.Item> */}
         </Carousel>
       </Modal>
     </Fragment>
