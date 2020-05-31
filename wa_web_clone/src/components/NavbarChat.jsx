@@ -12,7 +12,9 @@ const NavbarChat = (props) => {
     username = props.item.info_chat.name
   }
   return (
-    <Navbar id="navbar-chat" style={{ width: `${8 / 12 * 100}%`, left: `${4 / 12 * 100}%` }} className="p-0">
+    <Navbar id="navbar-chat"
+      style={{ width: `${8 / 12 * 100}%`, left: `${4 / 12 * 100}%`, borderLeft: "1px solid rgba(155, 154, 154, 0.5)" }}
+      className="p-0">
       <Nav.Link className="mr-auto">
         <Row>
           <Col md={2}><i className="fas fa-user-circle"></i></Col>
@@ -23,9 +25,9 @@ const NavbarChat = (props) => {
         </Row>
       </Nav.Link>
       <Nav className="ml-auto" style={{ color: "black" }}>
-        <Nav.Link><i className="fas fa-search"></i></Nav.Link>
-        <Nav.Link><i className="fas fa-paperclip"></i></Nav.Link>
-        <Nav.Link><i className="fas fa-ellipsis-v"></i></Nav.Link>
+        <Nav.Link><i style={{ fontSize: "20px" }} className="fas fa-search"></i></Nav.Link>
+        <Nav.Link><i style={{ fontSize: "20px" }} className="fas fa-paperclip"></i></Nav.Link>
+        <Nav.Link><i style={{ fontSize: "20px" }} className="fas fa-ellipsis-v"></i></Nav.Link>
       </Nav>
     </Navbar>
   )

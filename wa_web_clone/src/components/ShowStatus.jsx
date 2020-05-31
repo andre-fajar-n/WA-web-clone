@@ -8,12 +8,12 @@ const ShowStatus = (props) => {
   console.warn("cek show status", props)
   return (
     <Fragment>
-      <Modal dialogClassName="modal-show-status" show={props.showStatus} onHide={props.handleCloseStatus}>
+      <Modal dialogClassName="modal-show-status" show={props.handle_modal.showStatus} onHide={props.handle_modal.handleCloseStatus}>
         <Navbar className="navbar-show-status">
-          <Nav.Link style={{ color: "#ffffff" }} onClick={props.handleCloseStatus}>
+          <Nav.Link style={{ color: "#ffffff" }} onClick={props.handle_modal.handleCloseStatus}>
             <i className="fas fa-arrow-left"></i>
           </Nav.Link>
-          <Nav.Link style={{ color: "#ffffff" }} className="ml-auto" onClick={props.handleCloseStatus, props.handleCloseListStatus}>
+          <Nav.Link style={{ color: "#ffffff" }} className="ml-auto" onClick={props.handle_modal.handleCloseStatus, props.handleCloseListStatus}>
             <i className="fas fa-times"></i>
           </Nav.Link>
         </Navbar>

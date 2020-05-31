@@ -28,8 +28,10 @@ const ShowTabChat = (props) => {
       </div>
       {/* (end) menampilkan isi chat */}
 
-      <Form.Group onSubmit={(e) => e.preventDefault()} style={{ backgroundColor: "#f7f7f7", padding: "10px 0", margin: "0" }}>
-        <Row>
+      <Form.Group
+        onSubmit={(e) => e.preventDefault()}
+        style={{ backgroundColor: "#f7f7f7", padding: "10px 0", margin: "0 0 0 5px", width: "911px" }}>
+        <Row style={{ margin: "0" }}>
           <Col sm={1} className="p-0 m-auto" style={{ textAlign: "center" }}>
             <i className="far fa-grin" style={{ fontSize: "30px" }}></i>
           </Col>

@@ -4,8 +4,10 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import ListStatus from "./ListStatus"
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
 
 const NavbarProfile = (props) => {
   const [showProfile, setShow] = useState(false);
@@ -15,13 +17,19 @@ const NavbarProfile = (props) => {
   const [showListStatus, setListStatus] = useState(false)
   const handleCloseListStatus = () => setListStatus(false);
   const handleShowListStatus = () => setListStatus(true);
+
+  // logout
+  const logout = async () => {
+    await props.doLogout()
+    props.history.push("/login")
+  }
   return (
     <div style={{ position: "fixed", width: `${(4 / 12 * 100)}%`, left: "0", right: `${4 / 12 * 100}%`, zIndex: "999" }}>
-      <Navbar style={{ backgroundColor: "#ededed", }} className="p-0">
+      <Navbar style={{ backgroundColor: "#ededed", height: "64px" }} className="p-0">
 
         {/* tombol profile */}
         <Nav.Link className="mr-auto" onClick={handleShow}>
-          <i md={2} className="fas fa-user-circle"></i>
+          <i style={{ fontSize: "30px" }} md={2} className="fas fa-user-circle"></i>
         </Nav.Link>
 
         {/* start modal profile */}
@@ -34,8 +42,8 @@ const NavbarProfile = (props) => {
           </Modal.Header>
           <Modal.Body className="p-0 body-profile">
             <div style={{ backgroundColor: "#ededed" }}>Profile Picture</div>
-            <div>Name</div>
-            <div style={{ backgroundColor: "#ededed" }}>explanation name</div>
+            <div>{localStorage.getItem("username")}</div>
+            <div style={{ backgroundColor: "#ededed" }}>This is not your username or pin. This name will be visible to your Whatsapp contacts</div>
             <div>about</div>
           </Modal.Body>
         </Modal>
@@ -43,19 +51,53 @@ const NavbarProfile = (props) => {
 
         {/* start navbar status, new chat, setting */}
         <Nav className="ml-auto" style={{ color: "black" }}>
-          <Nav.Link onClick={handleShowListStatus}><i className="fas fa-circle-notch"></i></Nav.Link>
+          {/* status */}
+          <Nav.Link onClick={handleShowListStatus}>
+            <i style={{ fontSize: "20px" }} className="fas fa-circle-notch"></i>
+          </Nav.Link>
 
           {/* start modal list status */}
           <Modal dialogClassName="modal-status" show={showListStatus} onHide={handleCloseListStatus}>
             <ListStatus
               listStatus={props.listStatus}
-              dataUser={props.dataUser}
+              // dataUser={props.dataUser}
               handleCloseListStatus={handleCloseListStatus} />
           </Modal>
           {/* end modal list status */}
 
-          <Nav.Link><i className="fas fa-comment-dots"></i></Nav.Link>
-          <Nav.Link><i className="fas fa-ellipsis-v"></i></Nav.Link>
+          {/* new chat */}
+          <Nav.Link>
+            <i style={{ fontSize: "20px" }} className="fas fa-comment-dots"></i>
+          </Nav.Link>
+
+          {/* setting */}
+          <OverlayTrigger trigger="click" placement="bottom" overlay={(
+            <Popover id="popover-positioned-bottom">
+              <Popover.Content>
+                New Group
+            </Popover.Content>
+              <Popover.Content>
+                Profile
+            </Popover.Content>
+              <Popover.Content>
+                Archieved
+            </Popover.Content>
+              <Popover.Content>
+                Starred
+            </Popover.Content>
+              <Popover.Content>
+                Settings
+            </Popover.Content>
+              <Popover.Content onClick={() => logout()}>
+                Log Out
+            </Popover.Content>
+            </Popover>
+          )}>
+            <Nav.Link>
+              <i style={{ fontSize: "20px" }} className="fas fa-ellipsis-v"></i>
+            </Nav.Link>
+          </OverlayTrigger>
+
         </Nav>
         {/* end navbar status, new chat, setting */}
 

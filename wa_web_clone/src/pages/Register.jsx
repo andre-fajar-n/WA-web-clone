@@ -10,14 +10,14 @@ import Button from 'react-bootstrap/Button'
 class Register extends Component {
   postRegister = async () => {
     await this.props.register()
-    if (this.props.dataUser.isLogin) {
+    if (localStorage.getItem("token") !== null) {
       this.props.history.push("/")
     }
   }
   render() {
     return (
       <Fragment>
-        {this.props.dataUser.isLogin ? (
+        {localStorage.getItem("token") !== null ? (
           <Redirect to={{ pathname: "/" }} />
         ) : (
             <div className="background">

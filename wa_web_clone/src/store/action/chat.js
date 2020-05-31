@@ -29,7 +29,7 @@ export const sendMessage = (id, username) => {
         method: "POST",
         url: baseUrl,
         params: params,
-        headers: { 'Authorization': 'Bearer ' + getState().user.token }
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
       })
     } catch (error) {
       console.error("failed to send message")
@@ -43,7 +43,7 @@ export const deleteMessage = (id) => {
       await axios({
         method: "DELETE",
         url: `${url}personal_message/${id}`,
-        headers: { 'Authorization': 'Bearer ' + getState().user.token }
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
       })
     } catch (error) {
       console.error("message cannot delete")
@@ -55,7 +55,7 @@ export const getAllMessage = () => {
   return async (dispatch, getState) => {
     try {
       const response = await axios.get(url + "all_message", {
-        headers: { 'Authorization': 'Bearer ' + getState().user.token }
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
       })
       dispatch({
         type: "GET_ALL_MESSAGE",

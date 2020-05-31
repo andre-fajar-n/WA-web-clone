@@ -50,7 +50,7 @@ const Chat = (props) => {
     await props.history.replace('/')
     await props.getConversation()
   }
-
+  console.warn("cek chat", props.item.group_chat_id)
   return (
     <Fragment>
       {changeDate ? (
@@ -66,7 +66,11 @@ const Chat = (props) => {
           </div>
         ) : (
             <div id="friend-chat">
-              <div style={{ color: `${RandomColor()}`, fontWeight: "bold" }}>{props.value.user.username}</div>
+              {props.item.group_chat_id === undefined ? (
+                <Fragment></Fragment>
+              ) : (
+                  <div style={{ color: `${RandomColor()}`, fontWeight: "bold" }}>{props.value.user.username}</div>
+                )}
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>{props.value.message}</div>
                 <div style={{ display: "flex" }}>

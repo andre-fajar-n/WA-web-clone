@@ -10,7 +10,16 @@ const ListStatus = (props) => {
   const [showStatus, setStatus] = useState(false)
   const handleCloseStatus = () => setStatus(false);
   const handleShowStatus = () => setStatus(true);
-  console.warn("cek list status", props.listStatus)
+
+  const handleModal = props.listStatus.map((value) => {
+    value['handle_modal'] = {
+      showStatus,
+      handleShowStatus,
+      handleCloseStatus
+    }
+    return value
+  })
+  console.warn('cek handle modal', handleModal)
   return (
     <Row className="m-0">
       <Col md={4} className="p-0 header-status" >
@@ -28,11 +37,11 @@ const ListStatus = (props) => {
         <div className="list-status">
           <hr style={{ borderTop: "1px solid hsla(0,0%,100%,0.55)" }} />
           <span style={{ color: "hsla(0,0%,100%,0.55)" }}>Recent</span>
-          {props.listStatus.map((item) => (
+          {handleModal.map((item) => (
             <Fragment>
 
               {/* start list status */}
-              <Link onClick={handleShowStatus} style={{ color: "hsla(0,0%,100%,0.55)" }}>
+              <Link onClick={item.handle_modal.handleShowStatus} style={{ color: "hsla(0,0%,100%,0.55)" }}>
                 <Row>
                   <Col md={2} className="p-0">
                     <img className="avatar" src={require("../images/user.jpeg")} alt="" />
@@ -48,10 +57,11 @@ const ListStatus = (props) => {
               {/* start modal show status */}
               <ShowStatus
                 username={item.username}
+                handle_modal={item.handle_modal}
                 allStatus={item.all_status}
-                handleCloseStatus={handleCloseStatus}
-                handleCloseListStatus={props.handleCloseListStatus}
-                showStatus={showStatus}
+              // handleCloseStatus={handleCloseStatus}
+              // handleCloseListStatus={props.handleCloseListStatus}
+              // showStatus={showStatus}
               />
               {/* end modal show status */}
 

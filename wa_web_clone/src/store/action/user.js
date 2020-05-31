@@ -20,20 +20,16 @@ export const doLogin = () => {
             password: dataPassword
           }
         })
-      dispatch({
-        type: "DO_LOGIN",
-        payload: response.data
-      })
 
+      localStorage.setItem("token", response.data.token)
       // start get biodata user
       await axios.get(url + "user", {
-        headers: { 'Authorization': 'Bearer ' + getState().user.token }
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
       })
         .then((responseUser) => {
-          dispatch({
-            type: "GET_DATA_USER",
-            payload: responseUser.data
-          })
+          localStorage.setItem("id_user", responseUser.data.id)
+          localStorage.setItem("username", responseUser.data.username)
+          localStorage.setItem("phone_number", responseUser.data.phone_number)
         })
         .catch((error) => {
           alert("Data tidak ditemukan")
@@ -68,20 +64,16 @@ export const register = () => {
               password: dataPassword
             }
           })
-        dispatch({
-          type: "DO_LOGIN",
-          payload: response.data
-        })
+        localStorage.setItem("token", response.data.token)
 
         // start get biodata user
         await axios.get(url + "user", {
           headers: { 'Authorization': 'Bearer ' + getState().user.token }
         })
           .then((responseUser) => {
-            dispatch({
-              type: "GET_DATA_USER",
-              payload: responseUser.data
-            })
+            localStorage.setItem("id_user", responseUser.data.id)
+            localStorage.setItem("username", responseUser.data.username)
+            localStorage.setItem("phone_number", responseUser.data.phone_number)
           })
           .catch((error) => {
             alert("Data tidak ditemukan")
@@ -99,4 +91,12 @@ export const register = () => {
   }
 }
 
-export const doLogout = () => ({ type: "DO_LOGOUT" })
+export const doLogout = () => {
+  return async () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("id_user")
+    localStorage.removeItem("username")
+    localStorage.removeItem("phone_number")
+  }
+  // { type: "DO_LOGOUT" }
+}

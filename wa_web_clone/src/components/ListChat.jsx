@@ -25,7 +25,6 @@ const ListChat = (props) => {
   } else {
     showLastChat = moment.utc(props.value.last_chat.created_at).format('DD/M/YYYY')
   }
-  console.warn("cek tgl", props.value.last_chat.created_at)
   return (
     <div>
       <Nav.Link eventKey={`${username}`} style={{ width: "100%" }} className="p-0">
@@ -37,7 +36,7 @@ const ListChat = (props) => {
               <Col className="p-0">{showLastChat}</Col>
             </Row>
             <Row className="m-0">
-              {props.biodata.id === props.value.last_chat.user_id ? (
+              {localStorage.getItem("id_user") == props.value.last_chat.user_id ? (
                 <i className="fas fa-check"></i>
               ) : (
                   <Fragment></Fragment>

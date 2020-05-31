@@ -6,7 +6,7 @@ export const getStatus = () => {
   return async (dispatch, getState) => {
     try {
       const response = await axios.get(url + "status", {
-        headers: { 'Authorization': 'Bearer ' + getState().user.token }
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") }
       })
       dispatch({
         type: "GET_STATUS",

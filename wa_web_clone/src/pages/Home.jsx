@@ -10,6 +10,7 @@ import { Redirect } from "react-router-dom"
 import { sendMessage, changeInputMessage, deleteMessage, getAllMessage } from "../store/action/chat"
 import { getStatus } from "../store/action/status"
 import ShowTabChat from "../components/ShowTabChat"
+import { doLogout } from "../store/action/user"
 
 class Home extends Component {
   componentDidMount = async () => {
@@ -45,22 +46,24 @@ class Home extends Component {
   render() {
     const listAllMessage = this.props.listAllMessage
     return (
-      <Fragment>
-        {this.props.dataUser.isLogin ? (
+      <Fragment >
+        {localStorage.getItem("token") !== null ? (
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-            <Row>
+            <Row style={{ marginLeft: "0", marginRight: "15px" }}>
               <Col sm={4} className="p-0">
                 {/* header menu profile */}
                 <NavbarProfile
-                  dataUser={this.props.dataUser}
+                  // dataUser={this.props.dataUser}
+                  {...this.props}
+                  doLogout={this.props.doLogout}
                   listStatus={this.props.listStatus} />
 
                 {/* (start) Menampilkan list chat */}
                 <Nav variant="pills" className="flex-column">
-                  <div id="box-list-chat" style={{ marginTop: "110px" }}>
+                  <div id="box-list-chat" style={{ marginTop: "134px" }}>
                     {listAllMessage.map((value, id) => (
                       <Nav.Item key={id} >
-                        <ListChat value={value} biodata={this.props.dataUser.biodata} />
+                        <ListChat value={value} />
                       </Nav.Item>
                     ))}
                   </div>
@@ -85,7 +88,10 @@ class Home extends Component {
                   {listAllMessage.map((item) => (
                     <Fragment>
                       {/* show tab chat */}
-                      <ShowTabChat item={item} />
+                      <ShowTabChat
+                        changeInputMessage={this.props.changeInputMessage}
+                        postAfterSendMessage={this.postAfterSendMessage}
+                        item={item} />
 
                     </Fragment>
                   ))}
@@ -114,6 +120,7 @@ const mapDispatchToProps = {
   deleteMessage,
   getAllMessage,
   getStatus,
+  doLogout,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
