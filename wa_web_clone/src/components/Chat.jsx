@@ -30,16 +30,13 @@ const Chat = (props) => {
     }
   }
 
-
   // memilih tampilan 'showDate' berdasarkan sudah berapa lama dari hari ini
   const dateNow = parseInt(moment().format('D'))
   const dateChat = parseInt(moment.utc(props.value.created_at).format('D'))
-  if (dateNow - dateChat < 1) {
+  if (dateNow - dateChat === 0) {
     showDate = 'Today'
   } else if (dateNow - dateChat === 1) {
     showDate = "Yesterday"
-  } else if (dateNow - dateChat < 8) {
-    showDate = moment.utc(props.value.created_at).format('dddd')
   } else {
     showDate = moment.utc(props.value.created_at).format('D MMM YYYY')
   }
@@ -50,7 +47,7 @@ const Chat = (props) => {
     await props.history.replace('/')
     await props.getConversation()
   }
-  console.warn("cek chat", props.item.group_chat_id)
+  console.warn("cek chat", moment().to(dateChat, 'hours'), dateChat)
   return (
     <Fragment>
       {changeDate ? (
@@ -62,7 +59,27 @@ const Chat = (props) => {
         {props.value.user === undefined ? (
           <div id="user-chat" style={{ display: "flex", justifyContent: "space-between" }}>
             <div>{props.value.message}</div>
-            <div>{moment.utc(props.value.created_at).format('HH:mm')}</div>
+            <div className="time-chat">{moment.utc(props.value.created_at).format('HH:mm')}</div>
+            <Dropdown className="button-chat">
+              <Dropdown.Toggle as="span">
+                <i className="fas fa-chevron-down"></i>
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item>
+                  Reply
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  Forward message
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  Starred message
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <div onClick={() => deleteMessage(props.value.id)}>Delete message</div>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
         ) : (
             <div id="friend-chat">
@@ -74,11 +91,27 @@ const Chat = (props) => {
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>{props.value.message}</div>
                 <div style={{ display: "flex" }}>
-                  <div>{moment.utc(props.value.created_at).format('HH:mm')}</div>
-                  <Dropdown.Toggle split variant="success" />
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => deleteMessage(props.value.id)}>Delete Message</Dropdown.Item>
-                  </Dropdown.Menu>
+                  <div className="time-chat">{moment.utc(props.value.created_at).format('HH:mm')}</div>
+                  <Dropdown className="button-chat">
+                    <Dropdown.Toggle as="span">
+                      <i className="fas fa-chevron-down"></i>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item>
+                        Reply
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        Forward message
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        Starred message
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <div onClick={() => deleteMessage(props.value.id)}>Delete message</div>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </div>
               </div>
             </div>

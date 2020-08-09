@@ -4,10 +4,11 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import { useState } from "react"
-import { Link, Redirect } from "react-router-dom"
+import { Link, } from "react-router-dom"
 import ListStatus from "./ListStatus"
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
+import Dropdown from "react-bootstrap/Dropdown"
 
 const NavbarProfile = (props) => {
   const [showProfile, setShow] = useState(false);
@@ -60,7 +61,6 @@ const NavbarProfile = (props) => {
           <Modal dialogClassName="modal-status" show={showListStatus} onHide={handleCloseListStatus}>
             <ListStatus
               listStatus={props.listStatus}
-              // dataUser={props.dataUser}
               handleCloseListStatus={handleCloseListStatus} />
           </Modal>
           {/* end modal list status */}
@@ -97,6 +97,33 @@ const NavbarProfile = (props) => {
               <i style={{ fontSize: "20px" }} className="fas fa-ellipsis-v"></i>
             </Nav.Link>
           </OverlayTrigger>
+
+          {/* <Dropdown>
+            <Dropdown.Toggle as="span">
+              <i style={{ fontSize: "20px" }} className="fas fa-ellipsis-v"></i>
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item>
+                New Group
+                </Dropdown.Item>
+              <Dropdown.Item>
+                Profile
+                </Dropdown.Item>
+              <Dropdown.Item>
+                Archieved
+                </Dropdown.Item>
+              <Dropdown.Item>
+                Starred
+                </Dropdown.Item>
+              <Dropdown.Item>
+                Settings
+                </Dropdown.Item>
+              <Dropdown.Item onClick={() => logout()}>
+                Log Out
+                </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown> */}
 
         </Nav>
         {/* end navbar status, new chat, setting */}

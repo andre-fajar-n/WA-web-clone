@@ -8,7 +8,7 @@ import Tab from 'react-bootstrap/Tab'
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { sendMessage, changeInputMessage, deleteMessage, getAllMessage } from "../store/action/chat"
-import { getStatus } from "../store/action/status"
+import { getStatus, getUserStatus } from "../store/action/status"
 import ShowTabChat from "../components/ShowTabChat"
 import { doLogout } from "../store/action/user"
 
@@ -60,9 +60,9 @@ class Home extends Component {
 
                 {/* (start) Menampilkan list chat */}
                 <Nav variant="pills" className="flex-column">
-                  <div id="box-list-chat" style={{ marginTop: "134px" }}>
+                  <div id="box-list-chat" style={{ marginTop: "118px" }}>
                     {listAllMessage.map((value, id) => (
-                      <Nav.Item key={id} >
+                      <Nav.Item key={id} style={{ borderBottom: "1px solid rgba(155, 154, 154, 0.5)" }}>
                         <ListChat value={value} />
                       </Nav.Item>
                     ))}
@@ -112,6 +112,7 @@ const mapStateToProps = (state) => ({
   dataUser: state.user,
   listAllMessage: state.chat.listAllMessage,
   listStatus: state.status.listStatus,
+  userStatus: state.status.userStatus,
 })
 
 const mapDispatchToProps = {
@@ -121,6 +122,7 @@ const mapDispatchToProps = {
   getAllMessage,
   getStatus,
   doLogout,
+  getUserStatus
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

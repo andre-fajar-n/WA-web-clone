@@ -1,5 +1,6 @@
 const initialStatus = {
-  listStatus: []
+  listStatus: [],
+  userStatus: []
 }
 
 export default function statusReducer(statusState = initialStatus, action) {
@@ -8,6 +9,11 @@ export default function statusReducer(statusState = initialStatus, action) {
       return {
         ...statusState,
         listStatus: action.payload
+      }
+    case "GET_USER_STATUS":
+      return {
+        ...statusState,
+        userStatus: action.payload
       }
     default:
       return statusState

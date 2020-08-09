@@ -3,6 +3,18 @@ hr{
     margin-bottom: 5px;
 }
 
+a{color: #000000;}
+a .fa-chevron-down{display: none;}
+a:hover{
+    color: #000000;
+    background-color: #ebebeb;
+}
+a:hover .fa-chevron-down{display: inline;}
+.nav-pills .nav-link.active{
+    color: #000000;
+    background-color: #ebebeb;
+}
+
 #box-list-chat {
     max-height: 80vh;
     overflow-y: auto;
@@ -21,6 +33,8 @@ hr{
     scrollbar-width: thin;
     width: 911px;
 }
+ /* start content chat */
+.dropdown-toggle::after{display: none;}
 
 #friend-chat{
     background-color: #ffffff;
@@ -30,9 +44,14 @@ hr{
     border-radius: 10px;
     max-width: 80%;
 }
+#friend-chat .time-chat{display: inline;}
+#friend-chat .button-chat{display: none;}
+
+#friend-chat:hover .time-chat{display: none;}
+#friend-chat:hover .button-chat{display: inline;}
 
 #user-chat{
-    background-color: #6cea91;
+    background-color: #dcf8c6;
     border-radius: 10px;
     max-width: 80%;
     position: relative;
@@ -41,14 +60,20 @@ hr{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+#user-chat .time-chat{display: inline;}
+#user-chat .button-chat{display: none;}
+
+#user-chat:hover .time-chat{display: none;}
+#user-chat:hover .button-chat{display: inline;}
 
 #date-chat{
-    background-color: rgba(255, 245, 254, 0.92);
+    background-color: rgba(225, 245, 254, 0.92);
     max-width: 200px;
     border-radius: 10px;
     padding: 10px;
     position: relative;   
 }
+ /* end content chat */
 
 #navbar-chat{
     background-color: #ededed;

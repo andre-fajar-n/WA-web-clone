@@ -12,7 +12,7 @@ const ListStatus = (props) => {
   const handleShowStatus = () => setStatus(true);
 
   const handleModal = props.listStatus.map((value) => {
-    value['handle_modal'] = {
+    value[`handle_modal_${value.username}`] = {
       showStatus,
       handleShowStatus,
       handleCloseStatus
@@ -41,7 +41,7 @@ const ListStatus = (props) => {
             <Fragment>
 
               {/* start list status */}
-              <Link onClick={item.handle_modal.handleShowStatus} style={{ color: "hsla(0,0%,100%,0.55)" }}>
+              <Link onClick={item[`handle_modal_${item.username}`]['handleShowStatus']} style={{ color: "hsla(0,0%,100%,0.55)" }}>
                 <Row>
                   <Col md={2} className="p-0">
                     <img className="avatar" src={require("../images/user.jpeg")} alt="" />
@@ -57,7 +57,7 @@ const ListStatus = (props) => {
               {/* start modal show status */}
               <ShowStatus
                 username={item.username}
-                handle_modal={item.handle_modal}
+                item={item}
                 allStatus={item.all_status}
               // handleCloseStatus={handleCloseStatus}
               // handleCloseListStatus={props.handleCloseListStatus}

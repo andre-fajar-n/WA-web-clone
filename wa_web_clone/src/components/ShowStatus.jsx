@@ -5,15 +5,24 @@ import Nav from "react-bootstrap/Nav";
 import Carousel from 'react-bootstrap/Carousel'
 
 const ShowStatus = (props) => {
-  console.warn("cek show status", props)
+  console.warn("cek show status", props['item'][`handle_modal_${props.username}`]['handleCloseStatus'])
   return (
     <Fragment>
-      <Modal dialogClassName="modal-show-status" show={props.handle_modal.showStatus} onHide={props.handle_modal.handleCloseStatus}>
+      <Modal
+        dialogClassName="modal-show-status"
+      // show={props['item'][`handle_modal_${props.username}`]['showStatus']}
+      // onHide={props['item'][`handle_modal${props.username}`]['handleCloseStatus']}
+      >
         <Navbar className="navbar-show-status">
-          <Nav.Link style={{ color: "#ffffff" }} onClick={props.handle_modal.handleCloseStatus}>
+          <Nav.Link style={{ color: "#ffffff" }}
+          // onClick={props['item'][`handle_modal${props.username}`]['handleCloseStatus']}
+          >
             <i className="fas fa-arrow-left"></i>
           </Nav.Link>
-          <Nav.Link style={{ color: "#ffffff" }} className="ml-auto" onClick={props.handle_modal.handleCloseStatus, props.handleCloseListStatus}>
+          <Nav.Link style={{ color: "#ffffff" }}
+            className="ml-auto"
+          // onClick={props['item'][`handle_modal${props.username}`]['handleCloseStatus'], props.handleCloseListStatus}
+          >
             <i className="fas fa-times"></i>
           </Nav.Link>
         </Navbar>
@@ -63,7 +72,7 @@ const ShowStatus = (props) => {
           </Carousel.Item> */}
         </Carousel>
       </Modal>
-    </Fragment>
+    </Fragment >
   )
 }
 

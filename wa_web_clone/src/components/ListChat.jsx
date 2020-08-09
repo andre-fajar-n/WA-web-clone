@@ -2,6 +2,7 @@ import React, { Fragment } from "react"
 import Nav from "react-bootstrap/Nav"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import Dropdown from "react-bootstrap/Dropdown"
 
 const moment = require('moment')
 
@@ -27,26 +28,55 @@ const ListChat = (props) => {
   }
   return (
     <div>
-      <Nav.Link eventKey={`${username}`} style={{ width: "100%" }} className="p-0">
+      <Nav.Link eventKey={`${username}`} style={{ width: "100%", padding: "10px 0" }} >
         <Row className="m-0">
           <Col md={2}><i className="fas fa-user-circle"></i></Col>
           <Col md={10} className="p-0">
             <Row className="m-0">
               <Col className="p-0">{username}</Col>
-              <Col className="p-0">{showLastChat}</Col>
+              <Col className="p-0" style={{ display: "flex", justifyContent: "end" }}>{showLastChat}</Col>
             </Row>
             <Row className="m-0">
-              {localStorage.getItem("id_user") == props.value.last_chat.user_id ? (
-                <i className="fas fa-check"></i>
-              ) : (
-                  <Fragment></Fragment>
-                )}
-              {lastChat}
+              <Col className="p-0">
+                {localStorage.getItem("id_user") === props.value.last_chat.user_id ? (
+                  <i className="fas fa-check"></i>
+                ) : (
+                    <Fragment></Fragment>
+                  )}
+                {lastChat}
+              </Col>
+              <Col className="p-0" style={{ display: "flex", justifyContent: "end" }}>
+                {/* <i className="fas fa-chevron-down"></i> */}
+
+                <Dropdown>
+                  <Dropdown.Toggle as="span">
+                    <i className="fas fa-chevron-down"></i>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item>
+                      Archieve chat
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      Mute notifications
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      Delete chat
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      Pin chat
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      Mark as unread
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Col>
             </Row>
           </Col>
         </Row>
       </Nav.Link>
-      <hr />
+      {/* <hr /> */}
     </div>
   )
 }
