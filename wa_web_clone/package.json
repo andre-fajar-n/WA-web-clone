@@ -2,12 +2,15 @@
   "name": "wa_web_clone",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://andre-fajar-n.github.io/WA-web-clone",
   "dependencies": {
+    "-": "0.0.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "gh-pages": "^3.1.0",
     "moment": "^2.26.0",
     "moment-timezone": "^0.5.31",
     "react": "^16.13.1",
@@ -17,10 +20,13 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "save-dev": "0.0.1-security"
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
