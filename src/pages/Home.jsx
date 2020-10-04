@@ -101,7 +101,7 @@ class Home extends Component {
             </Row>
           </Tab.Container>
         ) : (
-            <Redirect to={{ pathname: "/login" }} />
+            <Redirect to={{ pathname: "/WA-web-clone/login" }} />
           )}
       </Fragment>
     )

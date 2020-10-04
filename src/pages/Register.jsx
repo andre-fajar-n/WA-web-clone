@@ -18,7 +18,7 @@ class Register extends Component {
     return (
       <Fragment>
         {localStorage.getItem("token") !== null ? (
-          <Redirect to={{ pathname: "/" }} />
+          <Redirect to={{ pathname: "/WA-web-clone" }} />
         ) : (
             <div className="background">
               <div className="header-wa-web">
