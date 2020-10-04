@@ -54,6 +54,7 @@ export const register = () => {
     }
     try {
       const response = await axios.post(url + "user", bodyRequest)
+      console.log(response)
 
       // start login
       try {
