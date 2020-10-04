@@ -16,9 +16,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install Packages
-      run: |
-        cd wa_web_clone
-        npm install
+      run: npm install
     - name: Deploy to GH Pages
       run: |
         git config --global user.email andrenugroho395@gmail.com
