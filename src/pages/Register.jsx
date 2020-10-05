@@ -18,7 +18,7 @@ class Register extends Component {
     return (
       <Fragment>
         {localStorage.getItem("token") !== null ? (
-          <Redirect to={{ pathname: "/WA-web-clone" }} />
+          <Redirect to={{ pathname: "/" }} />
         ) : (
             <div className="background">
               <div className="header-wa-web">
@@ -57,7 +57,7 @@ class Register extends Component {
                   <Button as="input" type="submit" value="Register" onClick={() => this.postRegister()} />{' '}
                 </Form>
                 <div style={{ textAlign: "center" }}>
-                  <span>Have an account? <Link className="switch-link" to="/WA-web-clone/login">Click here!</Link></span>
+                  <span>Have an account? <Link className="switch-link" to="/login">Click here!</Link></span>
                 </div>
               </div>
             </div>

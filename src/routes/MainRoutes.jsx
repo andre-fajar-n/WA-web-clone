@@ -8,15 +8,15 @@ import store from "../store";
 
 class MainRoutes extends Component {
   render() {
-    const baseRoute = "/WA-web-clone"
+    // const baseRoute = "/WA-web-clone"
 
     return (
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route exact path={`${baseRoute}/`} component={Home} />
-            <Route exact path={`${baseRoute}/login`} component={Login} />
-            <Route exact path={`${baseRoute}/register`} component={Register} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
           </Switch>
         </BrowserRouter>
       </Provider>

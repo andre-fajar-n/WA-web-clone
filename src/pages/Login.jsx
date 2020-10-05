@@ -19,7 +19,7 @@ class Login extends Component {
     return (
       <Fragment>
         {localStorage.getItem("token") !== null ? (
-          <Redirect to={{ pathname: "/WA-web-clone" }} />
+          <Redirect to={{ pathname: "/" }} />
         ) : (
             <div className="background">
               <div className="header-wa-web">
@@ -50,7 +50,7 @@ class Login extends Component {
                   <Button as="input" type="submit" value="Login" onClick={() => this.postLogin()} />{' '}
                 </Form>
                 <div style={{ textAlign: "center" }}>
-                  <span>Don't have an account? <Link className="switch-link" to="/WA-web-clone/register">Click here!</Link></span>
+                  <span>Don't have an account? <Link className="switch-link" to="/register">Click here!</Link></span>
                 </div>
               </div>
             </div>
